@@ -7,7 +7,9 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors())
+app.use(cors({
+  origin: ['https://relocatenowsandbox.spp.io', 'https://pt.relocatenow.io', 'https://relocatenow.spp.io'],
+}))
 
 const userId = 822;
 
