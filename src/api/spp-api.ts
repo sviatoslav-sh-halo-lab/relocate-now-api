@@ -15,8 +15,8 @@ class SppApi {
     });
   }
 
-  async getUserOrders(id: string) {
-    const data = await this.client.get(`/orders?filters%5Buser_id%5D%5B%24in%5D%5B%5D=${id}`);
+  async getUserOrders(id: string, limit?: number) {
+    const data = await this.client.get(`/orders?limit=${limit ?? 1000}&filters%5Buser_id%5D%5B%24in%5D%5B%5D=${id}`);
     return data.data;
   }
 
