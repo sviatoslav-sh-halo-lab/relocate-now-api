@@ -14,7 +14,7 @@ COPY . .
 RUN npm install
 
 # Starting our application
-CMD [ "ts-node", "src/main" ]
+CMD [ "npx", "ts-node", "src/main" ]
 
 # Exposing server port
 EXPOSE 3000
