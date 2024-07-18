@@ -1,9 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv'
-import { HttpStatusCode } from 'axios';
 import cors from 'cors'
-import sppApi from './api/spp-api'
 import users from './controllers/users-controller';
+import orders from './controllers/orders-controller';
 
 dotenv.config();
 
@@ -14,15 +13,7 @@ app.use(cors({
 }))
 
 app.use('/users', users);
-
-app.get('/orders', async (req: express.Request, res: express.Response) => {
-  const userId = req.query['userId'] as string;
-  if (!userId) {
-    return res.status(HttpStatusCode.BadRequest).json({message: 'User id is not provided'})
-  }
-  const data = (await sppApi.getUserOrders(userId)).data;
-  await res.json(data);
-})
+app.use('/orders', orders)
 
 app.listen(process.env.PORT, () => {
   console.log('Server has started on port ' + process.env.PORT);

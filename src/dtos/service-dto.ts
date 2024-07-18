@@ -1,0 +1,29 @@
+export class ServiceDto {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  recurring: boolean;
+  price: number;
+  pretty_price: string;
+  currency: string;
+  f_price: number;
+  f_period_l: number;
+  f_period_t: string;
+  r_price: number;
+  r_period_l: number;
+  r_period_t: string;
+  recurring_action: string;
+  multi_order: boolean;
+  request_orders: boolean;
+  option_categories: number[];
+  option_variants: number[];
+  deadline: number;
+  public: boolean;
+  sort_order: number;
+  braintree_plan_id: string;
+  group_quantities: boolean;
+  addon_to: number[];
+  folder_id: number;
+  metadata: object;
+}

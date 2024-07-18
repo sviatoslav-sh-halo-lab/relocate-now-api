@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import dotenv from 'dotenv';
+import { ServiceDto } from '../dtos/service-dto';
 
 dotenv.config();
 
@@ -15,19 +16,19 @@ class SppApi {
     });
   }
 
-  async getUserOrders(id: string, limit?: number) {
+  async getUserOrders(id: string, limit?: number): Promise<any[]> {
     const data = await this.client.get(`/orders?limit=${limit ?? 1000}&filters%5Buser_id%5D%5B%24in%5D%5B%5D=${id}`);
     return data.data;
   }
 
-  async getService(id: number | string) {
+  async getService(id: number | string): Promise<ServiceDto> {
     const data = await this.client.get(`/services/${id}`);
     return data.data;
   }
 
-  async getServices(limit?: number): Promise<{ data: any[] }> {
+  async getServices(limit?: number): Promise<ServiceDto[]> {
     const data = await this.client.get(`/services?limit=${limit ?? 1000}`);
-    return data.data;
+    return data.data.data;
   }
 }
 
