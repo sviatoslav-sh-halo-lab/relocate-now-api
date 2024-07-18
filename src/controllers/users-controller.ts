@@ -14,12 +14,13 @@ users.get('/:id/folder-counters', async (req: express.Request, res: express.Resp
     id: o.id,
     service_id: o.service_id,
     status: o.status,
-  }))
+  }));
+  const services = (await sppApi.getServices()).data;
   const servicesIds = new Set(orders.map((o) => o.service_id)) as Set<number>;
   const folderToService = {};
   const serviceToFolder = {};
   for (const serviceId of servicesIds) {
-    const service = await sppApi.getService(serviceId);
+    const service = services.find((s) => s.id === serviceId);
     serviceToFolder[serviceId] = service.folder_id;
     if (!folderToService[service.folder_id]) {
       folderToService[service.folder_id] = [service.id];

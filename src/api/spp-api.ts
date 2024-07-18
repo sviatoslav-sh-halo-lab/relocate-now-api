@@ -24,6 +24,11 @@ class SppApi {
     const data = await this.client.get(`/services/${id}`);
     return data.data;
   }
+
+  async getServices(limit?: number): Promise<{ data: any[] }> {
+    const data = await this.client.get(`/services?limit=${limit ?? 1000}`);
+    return data.data;
+  }
 }
 
 export default new SppApi();
