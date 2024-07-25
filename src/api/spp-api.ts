@@ -30,6 +30,11 @@ class SppApi {
     const data = await this.client.get(`/services?limit=${limit ?? 1000}`);
     return data.data.data;
   }
+
+  async getUserSubscriptions(id: string, limit?: number) {
+    const data = await this.client.get(`/subscriptions?limit=${limit ?? 1000}&filters%5Buser_id%5D%5B%24in%5D%5B%5D=${id}`);
+    return data.data.data;
+  }
 }
 
 export default new SppApi();

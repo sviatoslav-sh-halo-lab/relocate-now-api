@@ -60,4 +60,15 @@ users.get('/:id/folder-counters', async (req: express.Request, res: express.Resp
   res.json(result);
 })
 
+users.get('/:id/subscriptions', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const id = req.params['id'];
+  if (!id) {
+    return res.status(404).json({ message: 'No id' });
+  }
+
+  const subscriptions = await sppApi.getUserSubscriptions(id);
+
+  res.json(subscriptions);
+})
+
 export default users;
